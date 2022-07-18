@@ -33,7 +33,10 @@ public class Controller {
     @GetMapping("/{id}")
     public Person getDetails(@PathVariable("id") String id){
         Person person= new Person();
-        
+
+        WebClient webClient = WebClient.create("https:test.com");
+
+
 //        CompletableFuture.allOf(
 //                CompletableFuture.supplyAsync(() ->  restTemplate.exchange(employeeUrl + id, HttpMethod.GET, null, String.class))
 //                        .thenAccept(name -> person.setName(name.getBody())),
@@ -41,7 +44,9 @@ public class Controller {
 //                CompletableFuture.supplyAsync(() ->  restTemplate.exchange(salaryUrl + id, HttpMethod.GET, null, String.class))
 //                        .thenAccept((salary) -> person.setSalary(salary.getBody()))
 //        ).join();
+    restTemplate.exchange(employeeUrl + id , HttpMethod.GET, null, String.class);
 
+    restTemplate.exchange(employeeUrl+ id, HttpMethod.GET, null, String.class);
       String name=  webClientBuilder.build()
                 .get()
                 .uri(employeeUrl + id)
